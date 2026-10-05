@@ -96,42 +96,42 @@ DOMAINS = {
 # Ollama Endpoint Configuration
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 
-# Team Members Metadata (from presentation & research responsibilities)
-TEAM_MEMBERS = [
+# Core Architecture & System Specifications
+SYSTEM_SPECIFICATIONS = [
     {
-        "name": "Om Chaudhary",
-        "reg_no": "25BAI10742",
-        "role": "Intent Classification & Intelligent Model Routing",
-        "deliverable": "Ultra-fast zero-cloud intent router (<25ms budget), domain taxonomy, confusion matrix, hybrid cascade"
+        "title": "Semantic Intent Router",
+        "subsystem": "Intent Classification & Intelligent Routing",
+        "latency_budget": "T_route < 25.0 ms",
+        "description": "Ultra-fast zero-cloud intent classifier using a hybrid cascade of deterministic regex heuristics and semantic centroid cosine projections across 6 specialist domains."
     },
     {
-        "name": "Abhinav Singh",
-        "reg_no": "25BAI10858",
-        "role": "Memory Management, Model Swapping & System Optimization",
-        "deliverable": "Dynamic memory orchestration, LRU eviction, process lifecycle, swapping latency formulation (T_total = T_evict + T_load + T_infer)"
+        "title": "Adaptive Memory Orchestrator",
+        "subsystem": "Memory Management & Swapping Mechanics",
+        "latency_budget": "T_total = T_evict + T_load + T_infer",
+        "description": "Dynamic OS memory orchestration, LRU eviction queue, zero-leakage flushing, and warm cache bypass eliminating model loading bottlenecks."
     },
     {
-        "name": "Hardik Sharma",
-        "reg_no": "25BAI10772",
-        "role": "Vector Database, Context Management & Cross-Model Memory",
-        "deliverable": "Universal Context Envelope (UCE), canonical dialogue units, persistent serverless vector storage, exponential decay S(t)=S0*e^(-lambda*t)"
+        "title": "Universal Context Envelope",
+        "subsystem": "Vector Database & Cross-Model Context",
+        "latency_budget": "T_lookup < 15.0 ms",
+        "description": "Model-invariant Canonical Dialogue Units (CDU) preserving semantic context across model switches, backed by exponential relevance decay S(t) = S0 * e^(-lambda * t)."
     },
     {
-        "name": "Itiksha Bhardwaj",
-        "reg_no": "25BAI10069",
-        "role": "SLM Selection, Quantization & Performance Benchmarking",
-        "deliverable": "Asymmetric quantization matrix (FP16 vs Q8_0 vs Q5_K_M vs Q4_K_M), empirical benchmark suite (GSM8k, MedQA, HumanEval), TPS/TTFT profiling"
+        "title": "Asymmetric Quantization Suite",
+        "subsystem": "Model Specialization & Quantization Benchmarks",
+        "latency_budget": "Pareto Frontier Optimization",
+        "description": "Asymmetric quantization matrix allocating higher precision (Q8_0 / Q5_K_M) to sensitive domains (Math, Medical) while maximizing throughput on Q4_K_M for General chat."
     },
     {
-        "name": "Rishita Namdeo",
-        "reg_no": "25BAI10122",
-        "role": "Project Documentation & Use-Case Analysis",
-        "deliverable": "Comprehensive system documentation, offline air-gapped usability analysis, domain requirements"
+        "title": "Model Context Protocol Interop",
+        "subsystem": "Standard MCP 2.0 Server",
+        "latency_budget": "Zero Cloud Dependency",
+        "description": "Official Model Context Protocol specification server exposing tools, resources, and prompt templates for seamless integration with external IDEs and agents."
     },
     {
-        "name": "Tanishka Pandey",
-        "reg_no": "25BAI11496",
-        "role": "References & Presentation Architecture",
-        "deliverable": "Academic literature citations, llama.cpp & GGUF benchmarks, slide deck synthesis"
+        "title": "Air-Gapped Privacy Architecture",
+        "subsystem": "System Integrity & Local Execution",
+        "latency_budget": "100% Offline Local",
+        "description": "Fully self-contained offline architecture running on consumer hardware without telemetry egress or external API dependencies."
     }
 ]

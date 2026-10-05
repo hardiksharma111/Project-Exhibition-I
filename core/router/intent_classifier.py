@@ -1,5 +1,5 @@
 """
-Om's Semantic Intent Router & Prompt Classifier
+Semantic Intent Router & Prompt Classifier
 Meets strictly bounded latency budget: T_route < 25 ms
 Provides Hybrid Cascade: Heuristics -> Semantic Centroids -> Ambiguity Fallback
 """
@@ -31,7 +31,6 @@ class RouteResult(BaseModel):
 class IntentRouter:
     """
     Unified Intelligent Intent Router for Multi-Model Edge AI.
-    Om Chaudhary (25BAI10742) - Project Exhibition Review 1.
     """
 
     def __init__(self, latency_budget_ms: float = MAX_ROUTER_LATENCY_MS):

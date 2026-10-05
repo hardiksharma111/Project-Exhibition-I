@@ -1,5 +1,5 @@
 """
-Abhinav's Research Pillar: Adaptive Memory Management & Swapping Mechanics
+Adaptive Memory Management & Swapping Mechanics
 Mathematical formulation: T_total = T_evict + T_load + T_infer
 Provides OS-level memory tracking (psutil), LRU eviction, and zero-leakage flushing.
 """
@@ -61,7 +61,7 @@ class LatencyDecomposition(BaseModel):
 class AdaptiveMemoryManager:
     """
     Orchestrates process memory limits, model paging, and LRU swapping.
-    Abhinav Singh (25BAI10858) - Project Exhibition Review 1.
+    High-performance OS-level memory tracking and lifecycle management.
     """
 
     def __init__(

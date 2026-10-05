@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const mcpResourcePreview = document.getElementById("mcp-resource-preview");
   const resourceTabs = document.querySelectorAll(".resource-tabs button");
 
-  // Team Elements
-  const teamCardsContainer = document.getElementById("team-cards-container");
+  // Specs Elements
+  const specsCardsContainer = document.getElementById("specs-cards-container");
 
   // ==========================================
   // TAB NAVIGATION
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Lazy load tab data
       if (targetId === "tab-router" && !taxonomyTbody.hasChildNodes()) loadTaxonomy();
       if (targetId === "tab-benchmarks" && quantMatrixContainer.querySelector(".loader-box")) loadQuantMatrix();
-      if (targetId === "tab-team" && !teamCardsContainer.hasChildNodes()) loadTeamInfo();
+      if (targetId === "tab-specs") loadSystemSpecs();
     });
   });
 
@@ -477,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // ABHINAV'S MEMORY & SWAPPING SIMULATOR
+  // MEMORY & SWAPPING SIMULATOR
   // ==========================================
   function updateSwapSimulator() {
     const sizeMb = parseFloat(simSize.value);
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // HARDIK'S VECTOR DB & CONTEXT EXPLORER
+  // VECTOR DB & CONTEXT EXPLORER
   // ==========================================
   if (btnMemorySearch) {
     btnMemorySearch.addEventListener("click", async () => {
@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // ITIKSHA'S BENCHMARK LAB
+  // BENCHMARK LAB
   // ==========================================
   async function loadQuantMatrix() {
     try {
@@ -772,29 +772,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // TEAM INFO & REVIEW 1 DETAILS
+  // SYSTEM SPECIFICATIONS & ARCHITECTURE
   // ==========================================
-  async function loadTeamInfo() {
+  async function loadSystemSpecs() {
     try {
-      const res = await fetch("/api/team");
+      const res = await fetch("/api/specs");
       const data = await res.json();
 
       let html = "";
-      data.team.forEach((tm) => {
+      const specsList = data.specifications || [];
+      specsList.forEach((spec) => {
         html += `
-          <div class="team-member-card">
-            <div class="tm-name">${tm.name}</div>
-            <div class="tm-reg">Reg No: ${tm.reg_no}</div>
-            <div class="tm-role">${tm.role}</div>
-            <div class="tm-deliverable">${tm.deliverable}</div>
+          <div class="spec-card">
+            <div class="tm-name">${spec.title}</div>
+            <div class="tm-reg">${spec.latency_budget || spec.architecture_type || "Active Subsystem"}</div>
+            <div class="tm-role">${spec.subsystem}</div>
+            <div class="tm-deliverable">${spec.description}</div>
           </div>
         `;
       });
-      teamCardsContainer.innerHTML = html;
+      if (specsCardsContainer) specsCardsContainer.innerHTML = html;
     } catch (e) {
-      console.warn("Team info load error:", e);
+      console.warn("System specs load error:", e);
     }
   }
+
+  // Pre-fetch system specs
+  loadSystemSpecs();
 
   // ==========================================
   // HELPERS
@@ -808,6 +812,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function formatMarkdown(text) {
     let html = escapeHtml(text);
+
+    // Convert raw LaTeX math formulas into clean, readable text/HTML
+    html = html.replace(/\$T_{\\text\{total\}\}\s*=\s*T_{\\text\{evict\}\}\s*\+\s*T_{\\text\{load\}\}\s*\+\s*T_{\\text\{infer\}\}\$/g, 'T<sub>total</sub> = T<sub>evict</sub> + T<sub>load</sub> + T<sub>infer</sub>');
+    html = html.replace(/T_{\\text\{([a-zA-Z0-9_]+)\}\}/g, 'T<sub>$1</sub>');
+    html = html.replace(/\\Delta\s*S\s*\\ge\s*0/g, 'ΔS ≥ 0');
+    html = html.replace(/\\Delta/g, 'Δ');
+    html = html.replace(/\\ge/g, '≥');
+    html = html.replace(/\\le/g, '≤');
+    html = html.replace(/\\lambda/g, 'λ');
+    html = html.replace(/\\cdot/g, '·');
+    html = html.replace(/\\pi/g, 'π');
+    html = html.replace(/\\int/g, '∫');
+    html = html.replace(/\\sum/g, '∑');
+    html = html.replace(/\\sqrt\{([^}]+)\}/g, '√($1)');
+    html = html.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1 / $2)');
+    html = html.replace(/\$([^\$]+)\$/g, '<code class="math-inline">$1</code>');
+
     // Simple code block formatting
     html = html.replace(/```([a-zA-Z]*)\n([\s\S]*?)```/g, '<pre class="code-preview font-mono"><code>$2</code></pre>');
     // Inline code

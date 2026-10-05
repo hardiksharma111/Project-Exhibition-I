@@ -1042,13 +1042,13 @@ body.dark-theme {
   color: var(--accent-cyan);
 }
 
-/* Team Grid */
-.team-grid {
+/* Architecture & Specifications Grid */
+.specs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
-.team-member-card {
+.spec-card {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);

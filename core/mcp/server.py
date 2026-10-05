@@ -9,7 +9,7 @@ import json
 from typing import Dict, List, Optional, Any
 from fastmcp import FastMCP
 
-from core.config import DOMAINS, TEAM_MEMBERS
+from core.config import DOMAINS
 from core.router.intent_classifier import IntentRouter
 from core.memory.vector_store import VectorMemoryStore
 from core.memory.context_normalizer import UniversalContextEnvelope
@@ -30,7 +30,7 @@ benchmark_suite = BenchmarkSuite(model_switcher=model_switcher)
 mcp = FastMCP(
     "Intelligent-Multi-Model-Router",
     instructions=(
-        "You are connected to the Adaptive Multi-SLM Routing Engine (Project Exhibition). "
+        "You are connected to the Adaptive Multi-SLM Routing Engine. "
         "This MCP server intelligently routes prompts across 6 domains (Math, Medical, Code, "
         "Science, Writing, General) to specialized local SLMs, manages cross-model memory, "
         "minimizes swapping latency (T_total = T_evict + T_load + T_infer), and enforces asymmetric quantization."

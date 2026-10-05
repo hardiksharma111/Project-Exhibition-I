@@ -1,5 +1,5 @@
 """
-Itiksha's Research Pillar: Asymmetric Quantization Matrix & Trade-Off Analysis
+Asymmetric Quantization Matrix & Trade-Off Analysis
 Compares FP16 vs Q8_0 vs Q5_K_M vs Q4_K_M across accuracy, speed, and memory.
 Provides empirical proof for domain-specific asymmetric quantization.
 """

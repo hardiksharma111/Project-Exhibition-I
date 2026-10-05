@@ -1,5 +1,5 @@
 """
-Hardik's Research Pillar: Serverless Embedded Vector Store
+Embedded Vector Store Architecture
 Provides persistent, low-overhead semantic retrieval across SLM switches.
 Guarantees retrieval latency: T_retrieval < 15.0 ms.
 """
@@ -66,7 +66,7 @@ class MemoryItem:
 class VectorMemoryStore:
     """
     Offline Serverless Semantic Vector Store.
-    Hardik Sharma (25BAI10772) - Project Exhibition Review 1.
+    Persistent cross-model dialogue embedding index with fast cosine projection.
     """
 
     def __init__(self, storage_path: Optional[str] = None):

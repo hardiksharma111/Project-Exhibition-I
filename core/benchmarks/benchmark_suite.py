@@ -1,5 +1,5 @@
 """
-Itiksha's Research Pillar: Empirical Benchmark Suite & Evaluation Engine
+Empirical Benchmark Suite & Evaluation Engine
 Executes live evaluations on GSM8k, PubMedQA, and HumanEval datasets.
 Computes TTFT, TPS, Peak RAM Delta, and Quality Scores.
 """
@@ -17,7 +17,7 @@ from .quantization_matrix import QUANTIZATION_PROFILES
 class BenchmarkSuite:
     """
     Automated benchmark runner for multi-model edge AI.
-    Itiksha Bhardwaj (25BAI10069) - Project Exhibition Review 1.
+    Executes domain evaluation pipelines across latency, accuracy, and memory metrics.
     """
 
     def __init__(self, model_switcher: Optional[ModelSwitcher] = None):

@@ -1,8 +1,8 @@
-# Project Exhibition Research Responsibilities
+# Project Exhibition Research Specifications & Subsystem Architecture
 
 ---
 
-## ABHINAV : Systems Engineering, Memory Management & Swapping Mechanics
+## Research Pillar 1: Systems Engineering, Memory Management & Swapping Mechanics
 
 **Primary Focus:** Low-level resource optimization, process lifecycle management, and eliminating model-switching overhead.
 
@@ -11,13 +11,13 @@
 * **Runtime De-allocation Benchmarks:** Investigate how local runtimes (like `llama.cpp` / Ollama / C++ bindings) allocate and deallocate tensors in system RAM and VRAM. Determine how to force an absolute zero-leakage memory flush.
 * **Latency Bottleneck Analysis:** Research disk-to-RAM loading bottlenecks across storage interfaces (NVMe SSD throughput vs. RAM bus speeds) to quantify baseline model switch delays.
 * **Theoretical Contribution:** Formulate the mathematical model for total latency:
-  $$T_{\text{total}} = T_{\text{evict}} + T_{\text{load}} + T_{\text{infer}}$$
+  `T_total = T_evict + T_load + T_infer`
   and design a theoretical pre-fetching algorithm (predictive staging).
 * **Paper/Thesis Deliverable:** Drafts the *System Architecture & Dynamic Memory Management* methodology section, memory consumption profiles, and hardware allocation proofs.
 
 ---
 
-## OM : Semantic Intent Routing & Prompt Classification
+## Research Pillar 2: Semantic Intent Routing & Prompt Classification
 
 **Primary Focus:** Developing an ultra-fast, zero-cloud intent classifier that directs prompts to the correct specialized model with minimal compute overhead.
 
@@ -33,12 +33,12 @@
   * Science / Physics / Chemistry / Biology
   * Writing / Content Generation
   * General Reasoning / Dialogue
-* **Latency Budgeting:** Set an upper latency limit for the router ($<25\text{ ms}$) so the routing step does not visibly delay inference.
+* **Latency Budgeting:** Set an upper latency limit for the router (< 25 ms) so the routing step does not visibly delay inference.
 * **Paper/Thesis Deliverable:** Drafts the *Intelligent Routing Mechanism* section, confusion matrices, router accuracy metrics (F1-score across domains), and router inference latency tables.
 
 ---
 
-## HARDIK : Vector Database Architecture & Cross-Model Context Management
+## Research Pillar 3: Vector Database Architecture & Cross-Model Context Management
 
 **Primary Focus:** Designing the persistent offline memory layer and context-injection pipeline across model switches.
 
@@ -46,12 +46,12 @@
 * **Embedded Vector Storage Review:** Evaluate local, serverless vector databases (e.g., ChromaDB, LanceDB, Qdrant Embedded, SQLite-VSS) for disk footprint, query speed, and CPU indexing performance.
 * **Local Embedding Models:** Benchmark tiny, offline embedding models (e.g., `all-MiniLM-L6-v2`, `bge-small-en-v1.5`, `nomic-embed-text`) on CPU inference speed and retrieval accuracy.
 * **Cross-Model Context Normalization:** Research prompt templates to ensure context retrieved from a dialogue with Model A can be parsed and understood when injected into Model B without format breakdown (Universal Context Envelope).
-* **Memory Pruning & Decay Strategies:** Investigate strategies for episodic vs. long-term memory: semantic chunking, dynamic relevance decay over time ($S(t) = S_0 \cdot e^{-\lambda \Delta t}$), and fact-summarization pipelines during system idle states.
+* **Memory Pruning & Decay Strategies:** Investigate strategies for episodic vs. long-term memory: semantic chunking, dynamic relevance decay over time (`S(t) = S0 · e^(-λ · Δt)`), and fact-summarization pipelines during system idle states.
 * **Paper/Thesis Deliverable:** Drafts the *Persistent Knowledge Retrieval & Memory Synthesis* section, retrieval precision/recall benchmarks, and context-window efficiency analyses.
 
 ---
 
-## ITIKSHA : Model Specialization, Quantization & Evaluation Benchmarks
+## Research Pillar 4: Model Specialization, Quantization & Evaluation Benchmarks
 
 **Primary Focus:** Selecting the optimal small language models (SLMs), testing asymmetric quantization strategies, and defining the empirical benchmarking suite.
 

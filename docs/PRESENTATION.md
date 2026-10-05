@@ -1,6 +1,5 @@
 # Project Exhibition: Intelligent Multi-Model AI
 **Adaptive SLM Routing, Quantization and Context-Aware Inference**  
-*Review 1*
 
 ---
 
@@ -9,7 +8,7 @@
 
 | Section | Content | Section | Content |
 | :--- | :--- | :--- | :--- |
-| **01** | Title of the project | **06** | Contribution of each member |
+| **01** | Title of the project | **06** | Research Pillars & Subsystem Specifications |
 | **02** | Problem Statement | **07** | References |
 | **03** | Software Requirement | | |
 | **04** | Process Timeline | | |
@@ -66,7 +65,7 @@ Medical | Mathematics | Code | General Reasoning | Writing | Science
 * **Week 2:** Launch
 
 ### Adaptive Offline AI: Intelligent Multi-Model Routing and Resource-Efficient SLM Inference
-*Core Philosophy:* Right model $\rightarrow$ Right task $\rightarrow$ Less compute $\rightarrow$ Better results (offline)
+*Core Philosophy:* Right model → Right task → Less compute → Better results (offline)
 
 #### Architecture Pipeline
 1. **User Query:**  
@@ -93,7 +92,7 @@ Medical | Mathematics | Code | General Reasoning | Writing | Science
    *Example Output:* `"Diabetes is a chronic condition characterized by high blood sugar levels..."`
 6. **Quantization & Resource Optimization (for all models):**  
    Each model is tested with different quantization levels to find the best balance between accuracy and resource usage.
-   * **Tested Levels:** FP16 (Full precision) $\rightarrow$ Q4_K_M (4-bit) $\rightarrow$ Q5_K_M (5-bit) $\rightarrow$ Q8_0 (8-bit)
+   * **Tested Levels:** FP16 (Full precision) → Q4_K_M (4-bit) → Q5_K_M (5-bit) → Q8_0 (8-bit)
    * **Metrics Measured:**
      * Accuracy (domain-wise)
      * Speed (TTFT / TPS)
@@ -120,16 +119,16 @@ Medical | Mathematics | Code | General Reasoning | Writing | Science
 
 ---
 
-## Slide 8: Contribution of Each Member
+## Slide 8: Research Pillars & Subsystem Specifications
 
-| Name | Registration No. | Responsibilities / Contribution Area |
+| Pillar | Subsystem | Technical Deliverable & Architecture |
 | :--- | :--- | :--- |
-| **Itiksha Bhardwaj** | 25BAI10069 | SLM selection, quantization & performance benchmarking |
-| **Rishita Namdeo** | 25BAI10122 | Project documentation & use-case analysis |
-| **Abhinav Singh** | 25BAI10858 | Memory management, model swapping & system optimization |
-| **Hardik Sharma** | 25BAI10772 | Vector database, context management & cross-model memory |
-| **Tanishka Pandey** | 25BAI11496 | References & PPT content |
-| **Om Chaudhary** | 25BAI10742 | Intent classification & intelligent model routing |
+| **01** | Model Specialization & Quantization | Asymmetric quantization matrix (FP16, Q8_0, Q5_K_M, Q4_K_M) & empirical test suites |
+| **02** | Use-Case Engineering & Air-Gap Specs | Project documentation, clinical & educational use-case analysis |
+| **03** | Memory Management & Model Swapping | Hardware-aware memory management, OS memory mapping (`mmap`), LRU cache queue |
+| **04** | Vector Database & Cross-Model Context | Serverless vector database, Universal Context Envelope (UCE), exponential decay |
+| **05** | Serving Infrastructure & References | Literature review, GGUF/llama.cpp serving analysis, slide deck synthesis |
+| **06** | Intent Classification & Model Routing | Dual-tier heuristic regex + semantic centroid routing (< 25 ms) |
 
 ---
 

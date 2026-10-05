@@ -13,8 +13,8 @@ def run_all_tests():
     print("RUNNING COMPREHENSIVE MULTI-SLM ORCHESTRATION & MCP VERIFICATION SUITE")
     print("=" * 75)
 
-    # 1. Test Router (Om's Pillar)
-    print("\n--- [TEST 1] Om's Intent Router (<25ms budget) ---")
+    # 1. Test Router
+    print("\n--- [TEST 1] Cascade Intent Router (<25ms budget) ---")
     from core.router import IntentRouter
     router = IntentRouter()
     
@@ -35,8 +35,8 @@ def run_all_tests():
     print(f"  Router Benchmark Accuracy: {bench_rep['accuracy'] * 100}% | Avg Latency: {bench_rep['average_latency_ms']} ms")
     assert bench_rep["accuracy"] >= 0.90, "Router accuracy below 90%"
 
-    # 2. Test Vector Memory & Context Envelope (Hardik's Pillar)
-    print("\n--- [TEST 2] Hardik's Vector Store & Universal Context Envelope ---")
+    # 2. Test Vector Memory & Context Envelope
+    print("\n--- [TEST 2] Embedded Vector Store & Universal Context Envelope ---")
     from core.memory import VectorMemoryStore, UniversalContextEnvelope, MemoryDecayManager
     v_store = VectorMemoryStore()
     v_store.insert("Patient is taking Metformin 500mg twice daily for diabetes control.", "medical", "gemma3:4b", 0.95)
@@ -52,8 +52,8 @@ def run_all_tests():
     print(f"  Compiled Context Messages Count: {len(compiled)} | System prompt contains injected facts: {'METFORMIN' in compiled[0]['content'].upper()}")
     assert len(compiled) == 2, "Compiled messages structure invalid"
 
-    # 3. Test Memory & Swapping Orchestrator (Abhinav's Pillar)
-    print("\n--- [TEST 3] Abhinav's Memory & Swapping Latency Formulation ---")
+    # 3. Test Memory & Swapping Orchestrator
+    print("\n--- [TEST 3] Memory & Swapping Latency Formulation ---")
     from core.orchestrator import AdaptiveMemoryManager
     mem_mgr = AdaptiveMemoryManager(lru_capacity=3)
     
@@ -73,8 +73,8 @@ def run_all_tests():
     assert decomp_hot.is_hot_switch, "Model should be hot in RAM"
     assert decomp_hot.t_load_ms == 0.0, "Hot switch must have 0ms load penalty"
 
-    # 4. Test Quantization Matrix (Itiksha's Pillar)
-    print("\n--- [TEST 4] Itiksha's Asymmetric Quantization Matrix ---")
+    # 4. Test Quantization Matrix
+    print("\n--- [TEST 4] Asymmetric Quantization Matrix ---")
     from core.benchmarks import get_quantization_comparison
     quant_matrix = get_quantization_comparison()
     print(f"  Quantization Profiles Available: {quant_matrix['levels']}")

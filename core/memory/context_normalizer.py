@@ -1,5 +1,5 @@
 """
-Hardik's Research Pillar: Universal Context Envelope (UCE)
+Universal Context Envelope (UCE) Architecture
 Cross-Model Context Normalization & Canonical Dialogue Units (CDU)
 Prevents formatting breakdown across model switches (Gemma <-> Qwen <-> Llama).
 """
@@ -35,7 +35,7 @@ class CanonicalDialogueUnit(BaseModel):
 class UniversalContextEnvelope:
     """
     Manages and compiles context across disparate SLM tokenizers and prompt structures.
-    Hardik Sharma (25BAI10772) - Project Exhibition Review 1.
+    Formats canonical dialogue units into model-specific chat templates.
     """
 
     @staticmethod

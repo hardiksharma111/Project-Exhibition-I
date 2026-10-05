@@ -10,7 +10,7 @@ from fastapi import APIRouter, HTTPException, BackgroundTasks
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
-from core.config import DOMAINS, TEAM_MEMBERS
+from core.config import DOMAINS, SYSTEM_SPECIFICATIONS
 from core.router.intent_classifier import IntentRouter
 from core.memory.vector_store import VectorMemoryStore
 from core.memory.context_normalizer import UniversalContextEnvelope
@@ -212,7 +212,7 @@ def router_benchmark_endpoint():
 
 
 # ==========================================
-# SYSTEM & MEMORY ENDPOINTS (Abhinav's Research)
+# SYSTEM & MEMORY ENDPOINTS
 # ==========================================
 
 @router.get("/system/stats")
@@ -250,7 +250,7 @@ def evict_models_endpoint():
 
 
 # ==========================================
-# VECTOR & CONTEXT MEMORY (Hardik's Research)
+# VECTOR & CONTEXT MEMORY
 # ==========================================
 
 @router.get("/memory/search")
@@ -301,7 +301,7 @@ def memory_decay_curve_endpoint(half_life: float = 3600.0):
 
 
 # ==========================================
-# BENCHMARK SUITE (Itiksha's Research)
+# BENCHMARK SUITE
 # ==========================================
 
 @router.get("/benchmarks/matrix")
@@ -383,17 +383,17 @@ def mcp_resources_endpoint(uri: str = "system://status"):
 
 
 # ==========================================
-# METADATA & TEAM INFO
+# METADATA & SYSTEM SPECIFICATIONS
 # ==========================================
 
-@router.get("/team")
-def get_team_info_endpoint():
-    """Returns project review team members, registration numbers, and contributions."""
+@router.get("/specs")
+def get_system_specs_endpoint():
+    """Returns core architectural specifications and subsystem descriptions."""
     return {
-        "project_title": "Project Exhibition: Intelligent Multi-Model AI",
-        "subtitle": "Adaptive SLM Routing, Quantization and Context-Aware Inference (Review 1)",
+        "project_title": "Adaptive Multi-SLM AI Orchestrator",
+        "subtitle": "Intelligent Multi-Model Routing, Quantization & Context-Aware Inference",
         "domains": DOMAINS,
-        "team": TEAM_MEMBERS
+        "specifications": SYSTEM_SPECIFICATIONS
     }
 
 

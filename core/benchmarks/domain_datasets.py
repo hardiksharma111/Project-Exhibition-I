@@ -1,5 +1,5 @@
 """
-Itiksha's Research Pillar: Evaluation Framework & Standard Benchmark Datasets
+Evaluation Framework & Standard Benchmark Datasets
 Curates representative domain queries mapped to GSM8k, PubMedQA, HumanEval, and ARC.
 """
 

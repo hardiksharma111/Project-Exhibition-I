@@ -12,11 +12,11 @@ Conventional edge and offline AI solutions face a fundamental tension:
 
 **Our Proposed System: Adaptive Multi-SLM Orchestration**
 Instead of a one-size-fits-all model, our system deploys an ensemble of specialized Small Language Models (SLMs), governed by:
-1. **Cascade Intent Router (Om's Pillar)**: Directs prompts to the optimal specialized model within a strictly bounded latency budget ($<25\text{ ms}$).
-2. **Dynamic Memory & Swapping Orchestration (Abhinav's Pillar)**: Minimizes cold-load penalties using LRU eviction, VRAM/RAM hot caching, and predictive staging based on the latency equation:
-   $$T_{\text{total}} = T_{\text{evict}} + T_{\text{load}} + T_{\text{infer}}$$
-3. **Universal Context Envelope & Semantic Memory (Hardik's Pillar)**: Ensures context generated in Model A seamlessly injects into Model B without prompt format breakdown, coupled with exponential memory decay ($S(t) = S_0 \cdot e^{-\lambda \Delta t}$) and vector search.
-4. **Asymmetric Quantization & Benchmarking (Itiksha's Pillar)**: Asymmetrically quantizes each model according to domain sensitivity (e.g., Q8_0 for Math/Medical vs Q4_K_M for General Chat).
+1. **Cascade Intent Router**: Directs prompts to the optimal specialized model within a strictly bounded latency budget (T_route < 25 ms).
+2. **Dynamic Memory & Swapping Orchestration**: Minimizes cold-load penalties using LRU eviction, VRAM/RAM hot caching, and predictive staging based on the latency equation:
+   `T_total = T_evict + T_load + T_infer`
+3. **Universal Context Envelope & Semantic Memory**: Ensures context generated in Model A seamlessly injects into Model B without prompt format breakdown, coupled with exponential memory decay (`S(t) = S0 · e^(-λ · Δt)`) and vector search.
+4. **Asymmetric Quantization & Benchmarking**: Asymmetrically quantizes each model according to domain sensitivity (e.g., Q8_0 for Math/Medical vs Q4_K_M for General Chat).
 5. **Model Context Protocol (MCP) Server**: Provides native interoperability with external IDEs, agents, and desktop clients via the official Anthropic MCP specification.
 
 ---
@@ -37,15 +37,18 @@ Instead of a one-size-fits-all model, our system deploys an ensemble of speciali
 ### 3. Latency & Memory Math Formulation
 
 The end-to-end user-perceived turnaround time is modeled as:
-$$T_{\text{turnaround}} = T_{\text{route}} + T_{\text{mem\_retrieval}} + T_{\text{swap\_if\_needed}} + T_{\text{TTFT}} + \frac{N_{\text{tokens}}}{\text{TPS}}$$
+```
+T_turnaround = T_route + T_mem_retrieval + T_swap_if_needed + T_TTFT + (N_tokens / TPS)
+```
 
 Where:
-- $T_{\text{route}} < 25\text{ ms}$: Achieved via tier-1 regex matching and tier-2 domain-centroid cosine projection.
-- $T_{\text{mem\_retrieval}} < 15\text{ ms}$: Achieved via serverless embedded vector storage.
-- $T_{\text{swap\_if\_needed}}$:
-  $$T_{\text{swap}} = \begin{cases} 0 & \text{if target model is already warm in RAM/VRAM} \\ T_{\text{evict}} + T_{\text{load}} & \text{if cold switch or memory full} \end{cases}$$
+- `T_route < 25 ms`: Achieved via tier-1 regex matching and tier-2 domain-centroid cosine projection.
+- `T_mem_retrieval < 15 ms`: Achieved via serverless embedded vector storage.
+- `T_swap_if_needed`:
+  - `T_swap = 0 ms` if target model is already warm in RAM/VRAM
+  - `T_swap = T_evict + T_load` if cold switch or memory headroom threshold exceeded
 - Memory Eviction Trigger:
-  $$\text{RAM}_{\text{used}} + \text{Model}_{\text{required}} > \theta_{\text{max\_RAM}} \quad (\theta = 85\%)$$
+  - `RAM_used + Model_required > θ_max_RAM (θ = 85%)`
 
 ---
 

@@ -1,7 +1,6 @@
 """
 Orchestrator Model Switcher & Inference Engine
 Handles Ollama model serving, token streaming, TTFT/TPS calculation, and mock fallback.
-Abhinav Singh & Team - Project Exhibition Review 1.
 """
 
 import time
@@ -52,7 +51,7 @@ KNOWLEDGE_RESPONSES = {
     ),
     "science": (
         "Scientific Principles:\n\n"
-        "1. Thermodynamics & Entropy: The Second Law states that in any isolated system, total entropy $\\Delta S \\ge 0$.\n"
+        "1. Thermodynamics & Entropy: The Second Law states that in any isolated system, total entropy change ΔS ≥ 0.\n"
         "2. Molecular Mechanism: Energy dispersion occurs towards microstates with maximum statistical probability.\n"
         "3. Real-world Implication: Irreversibility dictates the arrow of thermodynamic time."
     ),

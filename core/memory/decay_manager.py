@@ -1,5 +1,5 @@
 """
-Hardik's Research Pillar: Dynamic Relevance Decay & Memory Pruning
+Dynamic Relevance Decay & Memory Pruning Architecture
 Mathematical formulation: S(t) = S0 * exp(-lambda * delta_t)
 Preserves high-salience factual anchors while smoothly decaying transient chatter.
 """
@@ -24,7 +24,7 @@ FACT_EXTRACTION_PATTERNS = [
 class MemoryDecayManager:
     """
     Implements exponential memory decay and salience-based pruning.
-    Hardik Sharma (25BAI10772) - Project Exhibition Review 1.
+    Exponentially decays relevance of transient conversation over time.
     """
 
     def __init__(self, half_life_seconds: float = 3600.0):
