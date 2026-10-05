@@ -38,15 +38,16 @@ MATH_REGEX = re.compile(
 
 # Medical Patterns: clinical symptoms, pharmacology, anatomy, pathology
 MEDICAL_REGEX = re.compile(
-    r"\b(symptom|symptoms|syndrome|diagnosis|differential\s+diagnosis|prognosis)\b|"
-    r"\b(patient|clinical|pathology|etiology|pathophysiology|pharmacology|pharmacokinetics)\b|"
-    r"\b(diabetes|hypertension|myocardial\s+infarction|arrhythmia|ischemia|stroke|seizure)\b|"
+    r"\b(symptom|symptoms|syndrome|diagnos(is|es)|differential\s+diagnos(is|es)|prognos(is|es))\b|"
+    r"\b(patient|patients|clinical|pathology|etiology|pathophysiology|pharmacology|pharmacokinetics)\b|"
+    r"\b(diabetes|hypertension|myocardial\s+infarction|arrhythmia|ischemia|stroke|seizure|pancreatitis)\b|"
     r"\b(antibiotic|analgesic|anticoagulant|insulin|metformin|lisinopril|atorvastatin|ibuprofen)\b|"
-    r"\b(dosage|mg\/kg|intravenous|subcutaneous|oral\s+dose|contraindication|adverse\s+effects)\b|"
+    r"\b(dosage|mg\/kg|intravenous|subcutaneous|oral\s+dose|contraindication|contraindications|adverse\s+effects)\b|"
     r"\b(oncology|carcinoma|metastasis|chemotherapy|biopsy|histology|radiology|mri|ct\s+scan)\b|"
     r"\b(cardiology|neurology|pediatrics|endocrinology|nephrology|hematology|immunology)\b|"
-    r"\b(erythrocyte|leukocyte|platelets|hemoglobin|hba1c|creatinine|troponin|bilirubin)\b|"
-    r"\b(hypertensive|hypoglycemia|hyperglycemia|ketoacidosis|sepsis|tachycardia|bradycardia)\b",
+    r"\b(erythrocyte|leukocyte|platelets|hemoglobin|hba1c|creatinine|troponin|bilirubin|lipase|amylase)\b|"
+    r"\b(hypertensive|hypoglycemia|hyperglycemia|ketoacidosis|sepsis|tachycardia|bradycardia|epigastric)\b|"
+    r"\b(acute\s+(pain|condition|abdomen)|chronic\s+disease|prescribe|prescription|medication|therapeutics)\b",
     re.IGNORECASE
 )
 

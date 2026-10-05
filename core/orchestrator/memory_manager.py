@@ -114,7 +114,7 @@ class AdaptiveMemoryManager:
         model_info = self.models.get(target_model, ModelStatus(model_name=target_model, domain="general", size_mb=2000.0))
 
         # Check if already warm in RAM
-        if target_model in self.lru_queue and model_info.state == ModelState.WARM:
+        if target_model in self.lru_queue and model_info.state in (ModelState.WARM, ModelState.ACTIVE):
             return LatencyDecomposition(
                 t_evict_ms=0.0,
                 t_load_ms=0.0,

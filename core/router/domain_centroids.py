@@ -20,12 +20,12 @@ DOMAIN_VOCABULARIES = {
         "infinity", "discrete", "recurrence", "linear algebra", "tensor", "complex number"
     ],
     "medical": [
-        "symptom", "diagnosis", "disease", "patient", "clinical", "treatment", "therapy", "syndrome",
-        "pathology", "etiology", "pharmacology", "dosage", "medication", "drug", "prescription",
-        "infection", "bacterial", "viral", "cardiovascular", "hypertension", "diabetes", "insulin",
-        "glucose", "blood pressure", "oncology", "cancer", "tumor", "biopsy", "prognosis",
-        "adverse effect", "contraindication", "surgery", "anatomy", "physiology", "hematology",
-        "neurology", "pediatrics", "immunology", "vaccine", "antibody", "respiratory", "renal"
+        "symptom", "symptoms", "diagnosis", "diagnoses", "disease", "patient", "clinical", "treatment", "therapy", "syndrome",
+        "pathology", "etiology", "pathophysiology", "pharmacology", "dosage", "medication", "drug", "prescription",
+        "infection", "bacterial", "viral", "cardiovascular", "hypertension", "diabetes", "insulin", "pain", "acute",
+        "glucose", "blood pressure", "oncology", "cancer", "tumor", "biopsy", "prognosis", "epigastric", "lipase",
+        "adverse effect", "contraindication", "contraindications", "surgery", "anatomy", "physiology", "hematology",
+        "neurology", "pediatrics", "immunology", "vaccine", "antibody", "respiratory", "renal", "pancreatitis"
     ],
     "code": [
         "code", "programming", "software", "function", "class", "method", "variable", "algorithm",
@@ -65,15 +65,16 @@ for domain, terms in DOMAIN_VOCABULARIES.items():
             ALL_TERMS.append(t)
 
 VOCAB_DIM = len(ALL_TERMS)
+HASH_BUCKETS = 64
+TOTAL_DIM = VOCAB_DIM + HASH_BUCKETS
 
 # Construct normalized centroid vectors for each domain
 DOMAIN_CENTROIDS: Dict[str, np.ndarray] = {}
 for domain, terms in DOMAIN_VOCABULARIES.items():
-    vec = np.zeros(VOCAB_DIM, dtype=np.float32)
+    vec = np.zeros(TOTAL_DIM, dtype=np.float32)
     for term in terms:
         idx = TERM_TO_IDX[term.lower()]
-        vec[idx] = 1.0
-    # Normalize to unit sphere (L2 norm)
+        vec[idx] = 2.0
     norm = np.linalg.norm(vec)
     if norm > 0:
         vec /= norm
@@ -81,21 +82,28 @@ for domain, terms in DOMAIN_VOCABULARIES.items():
 
 
 def tokenize_query(query: str) -> List[str]:
-    """Extract clean alphanumeric tokens and common n-grams."""
+    """Extract clean alphanumeric tokens, bigrams, and trigrams."""
     cleaned = re.sub(r"[^\w\s\+\-\*\/]", " ", query.lower())
     tokens = cleaned.split()
-    # Add bigrams for compound terms (e.g., 'differential equation', 'blood pressure')
     bigrams = [f"{tokens[i]} {tokens[i+1]}" for i in range(len(tokens) - 1)]
-    return tokens + bigrams
+    trigrams = [f"{tokens[i]} {tokens[i+1]} {tokens[i+2]}" for i in range(len(tokens) - 2)]
+    return tokens + bigrams + trigrams
 
 
 def compute_query_vector(query: str) -> np.ndarray:
-    """Projects text into normalized semantic centroid space."""
+    """
+    Projects text into normalized hybrid semantic-lexical space.
+    Combines domain anchor centroids with fast open-vocabulary hashing.
+    """
     tokens = tokenize_query(query)
-    vec = np.zeros(VOCAB_DIM, dtype=np.float32)
+    vec = np.zeros(TOTAL_DIM, dtype=np.float32)
     for t in tokens:
         if t in TERM_TO_IDX:
-            vec[TERM_TO_IDX[t]] += 1.0
+            vec[TERM_TO_IDX[t]] += 2.0
+        # Open-vocabulary hash feature
+        h_idx = VOCAB_DIM + (abs(hash(t)) % HASH_BUCKETS)
+        vec[h_idx] += 1.0
+
     norm = np.linalg.norm(vec)
     if norm > 0:
         vec /= norm

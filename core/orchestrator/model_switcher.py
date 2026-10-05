@@ -173,7 +173,7 @@ class ModelSwitcher:
             "tps": tps,
             "tokens_generated": token_count,
             "total_inference_seconds": round(total_inference_time, 3),
-            "swap_decomposition": swap_decomp.dict(),
+            "swap_decomposition": swap_decomp.model_dump(),
             "evicted_model": evicted
         }
 
@@ -195,7 +195,7 @@ class ModelSwitcher:
         yield {
             "type": "staging",
             "model": resolved_model,
-            "swap": swap_decomp.dict(),
+            "swap": swap_decomp.model_dump(),
             "evicted": evicted
         }
 

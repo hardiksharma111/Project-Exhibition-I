@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Multi-SLM AI | Intelligent Routing & Quantization Engine</title>
+  <meta name="description" content="Offline multi-model AI routing engine with adaptive memory management, cross-model context, asymmetric quantization benchmarks, and official Model Context Protocol (MCP) server.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="dark-theme">
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-cluster">
+        <div class="logo-orb">
+          <div class="orb-core"></div>
+        </div>
+        <div class="logo-meta">
+          <span class="logo-title">ADAPTIVE SLM <span class="badge-accent">ORCHESTRATOR</span></span>
+          <span class="logo-sub">Intelligent Multi-Model Routing • Review 1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Telemetry Bar -->
+    <div class="header-telemetry" id="header-telemetry">
+      <div class="telemetry-pill" id="pill-model">
+        <span class="pill-dot active"></span>
+        <span class="pill-label">Active Model:</span>
+        <span class="pill-val" id="telemetry-active-model">Detecting...</span>
+      </div>
+      <div class="telemetry-pill" id="pill-ram">
+        <span class="pill-icon">🧠</span>
+        <span class="pill-label">RAM:</span>
+        <span class="pill-val" id="telemetry-ram-val">--%</span>
+        <div class="pill-bar-track"><div class="pill-bar-fill" id="telemetry-ram-bar"></div></div>
+      </div>
+      <div class="telemetry-pill" id="pill-router">
+        <span class="pill-icon">⚡</span>
+        <span class="pill-label">Router:</span>
+        <span class="pill-val success" id="telemetry-router-budget">&lt; 25 ms</span>
+      </div>
+      <div class="telemetry-pill" id="pill-mcp">
+        <span class="pill-dot active"></span>
+        <span class="pill-label">MCP:</span>
+        <span class="pill-val" id="telemetry-mcp-status">ONLINE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="app-nav">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="tab-chat" id="tab-btn-chat">
+        <span class="tab-icon">💬</span> Multi-Model Chat
+      </button>
+      <button class="nav-tab" data-tab="tab-router" id="tab-btn-router">
+        <span class="tab-icon">🎯</span> Intent Router Lab <span class="tab-pill">Om</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-memory" id="tab-btn-memory">
+        <span class="tab-icon">⚙️</span> Memory & Swapping <span class="tab-pill">Abhinav</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-context" id="tab-btn-context">
+        <span class="tab-icon">📚</span> Context & Vector DB <span class="tab-pill">Hardik</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-benchmarks" id="tab-btn-benchmarks">
+        <span class="tab-icon">🔬</span> Quantization & Benchmarks <span class="tab-pill">Itiksha</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-mcp" id="tab-btn-mcp">
+        <span class="tab-icon">🔌</span> MCP Protocol Testbed
+      </button>
+      <button class="nav-tab" data-tab="tab-team" id="tab-btn-team">
+        <span class="tab-icon">👥</span> Team & Review 1
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Viewports -->
+  <main class="app-main">
+    <!-- =============================================================== -->
+    <!-- TAB 1: MULTI-MODEL CHAT & LIVE ROUTING ARENA -->
+    <!-- =============================================================== -->
+    <section class="tab-pane active" id="tab-chat">
+      <div class="chat-layout">
+        <!-- Chat Dialogue Section -->
+        <div class="chat-viewport">
+          <div class="chat-messages" id="chat-messages">
+            <!-- Initial Welcome Dialogue -->
+            <div class="message-row assistant intro-card">
+              <div class="msg-avatar">🤖</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <span class="agent-title">Adaptive SLM Orchestrator</span>
+                  <span class="tag-status">System Ready</span>
+                </div>
+                <div class="msg-text">
+                  <p><strong>Welcome to the Intelligent Multi-Model AI Exhibition Platform.</strong></p>
+                  <p>Our engine automatically classifies your intent in <strong>&lt; 25ms</strong>, recalls semantic context from the <strong>offline vector database</strong>, manages <strong>RAM model swapping ($T_{\text{total}} = T_{\text{evict}} + T_{\text{load}} + T_{\text{infer}}$)</strong>, and delegates to the ideal domain-specialized SLM.</p>
+                  <div class="quick-prompts-tray">
+                    <span class="tray-label">Quick Test Prompts:</span>
+                    <button class="chip-btn" data-query="Calculate the derivative of f(x) = x^3 * e^(2x) and find its critical points.">📐 Mathematics (Qwen)</button>
+                    <button class="chip-btn" data-query="What are the clinical differences and first-line treatments between Type 1 and Type 2 Diabetes?">⚕️ Medical (Gemma)</button>
+                    <button class="chip-btn" data-query="Write a Python script using asyncio and httpx to download multiple files concurrently.">💻 Code & Algorithms</button>
+                    <button class="chip-btn" data-query="Explain the second law of thermodynamics and why entropy never decreases in an isolated system.">⚛️ Science & Physics</button>
+                    <button class="chip-btn" data-query="Write a poetic reflection on memories fading like footprints on the shore.">✍️ Creative Writing</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message Composer Area -->
+          <div class="composer-container">
+            <!-- Model Override Selector Bar -->
+            <div class="composer-toolbar">
+              <div class="routing-mode-selector">
+                <span class="toolbar-label">Routing Mode:</span>
+                <select id="select-domain-override" class="dropdown-styled">
+                  <option value="">⚡ Auto-Adaptive Routing (Recommended)</option>
+                  <option value="mathematics">📐 Force Mathematics Specialist</option>
+                  <option value="medical">⚕️ Force Medical Specialist</option>
+                  <option value="code">💻 Force Code Specialist</option>
+                  <option value="science">⚛️ Force Science Specialist</option>
+                  <option value="writing">✍️ Force Writing Specialist</option>
+                  <option value="general">💬 Force General Reasoning</option>
+                </select>
+              </div>
+              <div class="toolbar-actions">
+                <button class="btn-ghost" id="btn-clear-chat" title="Clear Dialogue">🗑️ Clear Chat</button>
+              </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="composer-input-row">
+              <textarea id="chat-input" class="chat-textarea" placeholder="Ask any question across Math, Medical, Code, Science, Writing, or General..." rows="2"></textarea>
+              <button id="chat-submit-btn" class="btn-primary-glow">
+                <span class="btn-text">Send</span>
+                <span class="btn-icon">➤</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Right Inspector Sidebar -->
+        <aside class="chat-sidebar">
+          <!-- Active Specialist Card -->
+          <div class="panel-card" id="card-active-specialist">
+            <div class="card-head">
+              <span class="card-title">Live Pipeline Insights</span>
+              <span class="pulse-indicator"></span>
+            </div>
+            <div class="card-content">
+              <div class="insight-row">
+                <span class="metric-label">Detected Domain</span>
+                <span class="metric-badge" id="ins-domain">Auto-Routing</span>
+              </div>
+              <div class="insight-row">
+                <span class="metric-label">Assigned Model</span>
+                <span class="metric-val highlight" id="ins-model">--</span>
+              </div>
+              <div class="insight-row">
+                <span class="metric-label">Precision Tier</span>
+                <span class="metric-val" id="ins-quant">--</span>
+              </div>
+              <div class="insight-row">
+                <span class="metric-label">Router Latency</span>
+                <span class="metric-val success" id="ins-route-latency">0.00 ms</span>
+              </div>
+              <div class="insight-row">
+                <span class="metric-label">Memory Retrieval</span>
+                <span class="metric-val" id="ins-mem-latency">0.00 ms</span>
+              </div>
+              <div class="insight-row">
+                <span class="metric-label">Inference TTFT / TPS</span>
+                <span class="metric-val" id="ins-ttft-tps">-- ms / -- tps</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Swapping Latency Decomposition Gauge -->
+          <div class="panel-card" id="card-swap-gauge">
+            <div class="card-head">
+              <span class="card-title">Latency Equation Decomposition</span>
+              <span class="formula-chip">T_total = T_evict + T_load + T_infer</span>
+            </div>
+            <div class="card-content">
+              <div class="latency-bars">
+                <div class="lat-bar-group">
+                  <div class="lat-meta">
+                    <span>T_evict (Unload)</span>
+                    <span id="lat-evict-val">0 ms</span>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill evict" id="bar-evict" style="width: 0%"></div></div>
+                </div>
+                <div class="lat-bar-group">
+                  <div class="lat-meta">
+                    <span>T_load (NVMe &rarr; RAM)</span>
+                    <span id="lat-load-val">0 ms</span>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill load" id="bar-load" style="width: 0%"></div></div>
+                </div>
+                <div class="lat-bar-group">
+                  <div class="lat-meta">
+                    <span>T_infer (Compute)</span>
+                    <span id="lat-infer-val">0 ms</span>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill infer" id="bar-infer" style="width: 0%"></div></div>
+                </div>
+              </div>
+              <div class="switch-status-pill" id="ins-switch-type">
+                <span>Switch State:</span>
+                <span class="badge-tag hot" id="badge-switch-state">HOT CACHE (0ms swap)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick System Memory Status -->
+          <div class="panel-card">
+            <div class="card-head">
+              <span class="card-title">System RAM & Cache Status</span>
+              <button class="btn-micro" id="btn-quick-refresh-mem">⟳</button>
+            </div>
+            <div class="card-content">
+              <div class="ram-visualizer">
+                <div class="ram-circle-box">
+                  <div class="ram-percentage" id="sidebar-ram-percent">--%</div>
+                  <div class="ram-sub">Used RAM</div>
+                </div>
+                <div class="ram-details">
+                  <div class="detail-line"><span>Used:</span> <strong id="sidebar-ram-used">-- GB</strong></div>
+                  <div class="detail-line"><span>Free:</span> <strong id="sidebar-ram-free">-- GB</strong></div>
+                  <div class="detail-line"><span>Warm Models:</span> <strong id="sidebar-warm-count">0</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 2: OM'S INTENT ROUTER LAB -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-router">
+      <div class="research-grid">
+        <!-- Pillar Overview Card -->
+        <div class="pillar-hero">
+          <div class="pillar-tag">Om Chaudhary (25BAI10742) • Research Pillar 1</div>
+          <h2>Semantic Intent Routing & Prompt Classification</h2>
+          <p>Developing an ultra-fast, zero-cloud intent classifier that directs prompts to the optimal specialized SLM within a strict latency budget ($&lt;25\text{ ms}$). Features a hybrid cascade of deterministic regex heuristics and semantic centroid cosine projections.</p>
+        </div>
+
+        <!-- Interactive Router Tester -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Live Prompt Classifier Playground</span>
+            <span class="badge-accent">&lt; 25 ms Guarantee</span>
+          </div>
+          <div class="card-content">
+            <div class="test-input-group">
+              <input type="text" id="router-test-input" class="input-styled" placeholder="Type any query to test the classifier (e.g., 'Prove that the square root of 2 is irrational')...">
+              <button class="btn-primary" id="btn-test-route">Classify Intent</button>
+            </div>
+
+            <!-- Quick Chips -->
+            <div class="preset-chips">
+              <span class="chip-label">Test Samples:</span>
+              <button class="test-chip" data-test="Calculate the eigenvalues and determinant of a 3x3 matrix">∑ Math Eigenvalues</button>
+              <button class="test-chip" data-test="A patient presents with acute chest pain radiating to left jaw with ST-elevation">⚕️ Medical STEMI</button>
+              <button class="test-chip" data-test="Write a Python class with async methods to parse streaming JSON lines">💻 Async Python Code</button>
+              <button class="test-chip" data-test="Explain why entropy increases according to the second law of thermodynamics">⚛️ Science Entropy</button>
+              <button class="test-chip" data-test="Compose a compelling opening monologue for a mystery novel">✍️ Creative Prose</button>
+            </div>
+
+            <!-- Routing Result Breakdown -->
+            <div class="router-result-box" id="router-result-box">
+              <div class="result-placeholder">Click 'Classify Intent' or select a sample above to view live classification mechanics.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confusion Matrix & Accuracy Metrics -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Empirical Confusion Matrix (6x6 Domains)</span>
+            <button class="btn-micro" id="btn-run-router-bench">Run Benchmark Suite</button>
+          </div>
+          <div class="card-content">
+            <div class="matrix-wrapper" id="matrix-container">
+              <div class="loader-box">Loading confusion matrix...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain Taxonomy Architecture Card -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Domain Taxonomy & Precision Allocation</span>
+          </div>
+          <div class="card-content">
+            <div class="taxonomy-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Domain</th>
+                    <th>Target SLM</th>
+                    <th>Quantization</th>
+                    <th>Rationale</th>
+                  </tr>
+                </thead>
+                <tbody id="taxonomy-tbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 3: ABHINAV'S MEMORY & SWAPPING ORCHESTRATOR -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-memory">
+      <div class="research-grid">
+        <div class="pillar-hero">
+          <div class="pillar-tag">Abhinav Singh (25BAI10858) • Research Pillar 2</div>
+          <h2>Systems Engineering, Memory Management & Swapping Mechanics</h2>
+          <p>Low-level resource optimization, process lifecycle management, and eliminating model-switching overhead. Implements dynamic LRU eviction, zero-leakage memory flushing, and empirical verification of the latency equation: <strong>$T_{\text{total}} = T_{\text{evict}} + T_{\text{load}} + T_{\text{infer}}$</strong>.</p>
+        </div>
+
+        <!-- Interactive Latency Model Simulator -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Theoretical Swapping Latency Simulator</span>
+            <span class="formula-chip">T_total = T_evict + T_load + T_infer</span>
+          </div>
+          <div class="card-content">
+            <div class="sim-grid">
+              <div class="sim-controls">
+                <div class="control-row">
+                  <label>Model Parameter Footprint (MB):</label>
+                  <input type="range" id="sim-size" min="1500" max="8000" step="250" value="3379">
+                  <span class="slider-val" id="sim-size-val">3379 MB (Gemma 3 4B)</span>
+                </div>
+                <div class="control-row">
+                  <label>Storage Bus Throughput (MB/s):</label>
+                  <select id="sim-bus" class="dropdown-styled">
+                    <option value="3500">PCIe Gen4 NVMe SSD (~3500 MB/s)</option>
+                    <option value="2000">PCIe Gen3 NVMe SSD (~2000 MB/s)</option>
+                    <option value="550">SATA III SSD (~550 MB/s)</option>
+                    <option value="140">Mechanical HDD (~140 MB/s)</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>RAM Cache State:</label>
+                  <div class="radio-toggle">
+                    <label><input type="radio" name="sim-state" value="cold" checked> Cold Switch (Disk &rarr; RAM)</label>
+                    <label><input type="radio" name="sim-state" value="hot"> Hot Cache (Already resident)</label>
+                  </div>
+                </div>
+              </div>
+              <div class="sim-output-box">
+                <div class="sim-stat-card">
+                  <span class="sim-stat-lbl">T_evict</span>
+                  <span class="sim-stat-val" id="calc-evict">0.0 ms</span>
+                </div>
+                <div class="sim-stat-card">
+                  <span class="sim-stat-lbl">T_load</span>
+                  <span class="sim-stat-val" id="calc-load">965.4 ms</span>
+                </div>
+                <div class="sim-stat-card">
+                  <span class="sim-stat-lbl">T_infer</span>
+                  <span class="sim-stat-val" id="calc-infer">500.0 ms</span>
+                </div>
+                <div class="sim-stat-card highlight">
+                  <span class="sim-stat-lbl">Total Turnaround (T_total)</span>
+                  <span class="sim-stat-val" id="calc-total">1465.4 ms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Memory & LRU Queue State -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Live LRU Cache & Model Queue</span>
+            <div class="actions">
+              <button class="btn-danger-micro" id="btn-force-evict">Force Evict All</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="lru-visual-queue" id="lru-queue-display">
+              <!-- Populated via JS -->
+            </div>
+            <div class="model-action-list" id="model-preload-list">
+              <!-- Buttons to stage or pre-warm models -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time OS Memory Curves -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Hardware Telemetry (psutil)</span>
+            <span class="pulse-indicator"></span>
+          </div>
+          <div class="card-content">
+            <div class="hardware-spec-box" id="hardware-spec-box">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 4: HARDIK'S CONTEXT & VECTOR DB EXPLORER -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-context">
+      <div class="research-grid">
+        <div class="pillar-hero">
+          <div class="pillar-tag">Hardik Sharma (25BAI10772) • Research Pillar 3</div>
+          <h2>Vector Database Architecture & Cross-Model Context Management</h2>
+          <p>Designing the persistent offline memory layer and context-injection pipeline across model switches. Normalizes multi-turn dialogue into <strong>Canonical Dialogue Units (CDU)</strong>, preventing prompt breakdown across model switches (Gemma &harr; Qwen &harr; Llama), backed by exponential relevance decay <strong>$S(t) = S_0 \cdot e^{-\lambda \Delta t}$</strong>.</p>
+        </div>
+
+        <!-- Semantic Vector Store Explorer -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Semantic Vector Memory Search</span>
+            <span class="badge-accent">&lt; 15 ms Query</span>
+          </div>
+          <div class="card-content">
+            <div class="test-input-group">
+              <input type="text" id="memory-search-input" class="input-styled" placeholder="Search semantic vector memory (e.g. 'diabetes medication')...">
+              <button class="btn-primary" id="btn-memory-search">Search</button>
+            </div>
+            <div class="memory-results-tray" id="memory-results-tray">
+              <div class="result-placeholder">Enter a search query to inspect stored semantic vectors.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Fact to Long Term Memory -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Inject Fact into Long-Term Memory</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label>Factual Knowledge String:</label>
+              <textarea id="fact-input-text" class="chat-textarea" rows="2" placeholder="e.g. 'Patient has renal clearance eGFR of 42 mL/min.'"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-col">
+                <label>Domain Tag:</label>
+                <select id="fact-input-domain" class="dropdown-styled">
+                  <option value="medical">Medical</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="code">Code</option>
+                  <option value="science">Science</option>
+                  <option value="writing">Writing</option>
+                  <option value="general">General</option>
+                </select>
+              </div>
+              <div class="form-col">
+                <label>Salience (S_0):</label>
+                <input type="number" id="fact-input-importance" class="input-styled" min="0.1" max="1.0" step="0.1" value="0.9">
+              </div>
+            </div>
+            <button class="btn-primary" id="btn-save-fact" style="margin-top: 10px;">Store In Vector DB</button>
+          </div>
+        </div>
+
+        <!-- Universal Context Envelope (UCE) Inspector -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Universal Context Envelope (UCE) & Dialogue Compilation</span>
+            <span class="badge-tag">Cross-Model Normalizer</span>
+          </div>
+          <div class="card-content">
+            <div class="uce-demo-split">
+              <div class="uce-card">
+                <h4>1. Canonical Dialogue Unit (CDU)</h4>
+                <pre class="code-preview" id="uce-cdu-preview">{
+  "cdu_id": "cdu-8921",
+  "role": "assistant",
+  "source_model": "gemma3:4b",
+  "domain": "medical",
+  "importance": 0.95,
+  "sanitized": true,
+  "content": "Patient exhibits Type-2 Glycemic variability. Metformin 500mg daily recommended."
+}</pre>
+              </div>
+              <div class="uce-card">
+                <h4>2. Compiled for Model B (e.g. Qwen 3.5 / Llama 3.2)</h4>
+                <pre class="code-preview" id="uce-compiled-preview">[SYSTEM]: You are the specialized CODE expert.
+[RETRIEVED CROSS-MODEL CONTEXT]:
+- Patient exhibits Type-2 Glycemic variability. Metformin 500mg daily recommended.
+
+[Context from prior medical specialist (gemma3:4b)]:
+Explanation provided previously.
+
+[USER]: Write a script to calculate weekly glucose variance.</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 5: ITIKSHA'S QUANTIZATION & BENCHMARK LAB -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-benchmarks">
+      <div class="research-grid">
+        <div class="pillar-hero">
+          <div class="pillar-tag">Itiksha Bhardwaj (25BAI10069) • Research Pillar 4</div>
+          <h2>Model Specialization, Quantization & Evaluation Benchmarks</h2>
+          <p>Evaluating small language models (SLMs) in the 3B–8B parameter range. Proves the <strong>Asymmetric Quantization Hypothesis</strong>: Math and Medical domains require higher bit-depth (Q8_0 / Q5_K_M) to avoid floating-point catastrophic drift, while General Chat achieves 2x speedups on Q4_K_M with negligible quality loss.</p>
+        </div>
+
+        <!-- Asymmetric Quantization Comparison Matrix -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Asymmetric Quantization Trade-Off Matrix</span>
+            <span class="badge-accent">FP16 vs Q8_0 vs Q5_K_M vs Q4_K_M</span>
+          </div>
+          <div class="card-content">
+            <div class="quant-matrix-wrapper" id="quant-matrix-container">
+              <div class="loader-box">Loading quantization matrix...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Domain Benchmark Runner -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Live Empirical Benchmark Runner (GSM8k, PubMedQA, HumanEval)</span>
+            <div class="benchmark-controls">
+              <select id="select-bench-domain" class="dropdown-styled">
+                <option value="mathematics">📐 Mathematics (GSM8k Subset)</option>
+                <option value="medical">⚕️ Medical (PubMedQA Subset)</option>
+                <option value="code">💻 Code (HumanEval Subset)</option>
+                <option value="science">⚛️ Science (ARC Challenge)</option>
+                <option value="writing">✍️ Writing & Synthesis</option>
+                <option value="general">💬 General Reasoning (MMLU)</option>
+              </select>
+              <button class="btn-primary" id="btn-run-live-bench">Execute Benchmark</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="bench-results-tray" id="bench-results-tray">
+              <div class="result-placeholder">Click 'Execute Benchmark' to evaluate domain capability, TTFT, TPS, and accuracy scores.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 6: MODEL CONTEXT PROTOCOL (MCP) TESTBED -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-mcp">
+      <div class="research-grid">
+        <div class="pillar-hero">
+          <div class="pillar-tag">Standard Model Context Protocol (MCP) • Anthropic Specification</div>
+          <h2>Official Model Context Protocol (MCP) Client & Inspector</h2>
+          <p>Exposes the local adaptive multi-model routing engine directly to external IDEs, AI agents, and desktop clients. Test all exposed MCP Tools, inspect Resources, and review JSON-RPC execution payloads in real time.</p>
+        </div>
+
+        <!-- MCP Tool Runner Box -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">Interactive MCP Tool Execution</span>
+            <span class="badge-tag">JSON-RPC 2.0</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label>Select MCP Tool:</label>
+              <select id="mcp-select-tool" class="dropdown-styled">
+                <option value="route_and_infer">route_and_infer (Full multi-model pipeline)</option>
+                <option value="classify_intent">classify_intent (&lt;25ms domain routing)</option>
+                <option value="query_semantic_memory">query_semantic_memory (Vector search)</option>
+                <option value="add_memory_fact">add_memory_fact (Store persistent fact)</option>
+                <option value="get_system_telemetry">get_system_telemetry (Hardware metrics)</option>
+                <option value="run_quantization_benchmark">run_quantization_benchmark (Domain benchmark)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tool Arguments (JSON):</label>
+              <textarea id="mcp-args-input" class="chat-textarea font-mono" rows="4">{"query": "Calculate 35 * 18 and state the steps."}</textarea>
+            </div>
+            <button class="btn-primary" id="btn-invoke-mcp">Invoke MCP Tool</button>
+          </div>
+        </div>
+
+        <!-- MCP Tool Execution Output Box -->
+        <div class="panel-card half-width">
+          <div class="card-head">
+            <span class="card-title">MCP Response Payload</span>
+            <span class="pill-dot active" id="mcp-exec-status"></span>
+          </div>
+          <div class="card-content">
+            <pre class="code-preview font-mono" id="mcp-response-preview">// Select a tool and click 'Invoke MCP Tool' to inspect JSON-RPC response.</pre>
+          </div>
+        </div>
+
+        <!-- MCP Resources Inspector -->
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">MCP Resources Catalog</span>
+            <div class="resource-tabs">
+              <button class="btn-chip active" data-res="system://status">system://status</button>
+              <button class="btn-chip" data-res="system://domains">system://domains</button>
+              <button class="btn-chip" data-res="system://benchmarks">system://benchmarks</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <pre class="code-preview font-mono" id="mcp-resource-preview">// Select a resource URI above to read content.</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- TAB 7: TEAM & REVIEW 1 EXHIBITION DETAILS -->
+    <!-- =============================================================== -->
+    <section class="tab-pane" id="tab-team">
+      <div class="research-grid">
+        <div class="pillar-hero">
+          <div class="pillar-tag">Project Exhibition I • Review 1</div>
+          <h2>Adaptive SLM Routing, Quantization & Context-Aware Inference</h2>
+          <p>Core Philosophy: <em>Right model &rarr; Right task &rarr; Less compute &rarr; Better results (100% offline).</em></p>
+        </div>
+
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Team Members & Research Responsibilities</span>
+          </div>
+          <div class="card-content">
+            <div class="team-grid" id="team-cards-container">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card full-width">
+          <div class="card-head">
+            <span class="card-title">Academic & Technical References</span>
+          </div>
+          <div class="card-content">
+            <ul class="ref-list">
+              <li><strong>llama.cpp:</strong> Efficient 4-bit, 5-bit, and 8-bit quantized integer arithmetic for local CPU/GPU tensor execution.</li>
+              <li><strong>FastMCP & Model Context Protocol:</strong> Standardized protocol for external tool, resource, and context provision across AI agents.</li>
+              <li><strong>Asymmetric Quantization Research:</strong> Empirical divergence of loss functions across differential mathematics vs creative language models.</li>
+              <li><strong>Universal Context Envelope:</strong> Model-agnostic normalization of prompt control tokens across Gemma, Qwen, and Llama architectures.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

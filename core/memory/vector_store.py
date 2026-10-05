@@ -13,7 +13,7 @@ from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 
 from core.config import MEMORY_STORE_DIR, MAX_MEMORY_LOOKUP_LATENCY_MS
-from core.router.domain_centroids import compute_query_vector, VOCAB_DIM
+from core.router.domain_centroids import compute_query_vector, TOTAL_DIM
 
 
 class MemoryItem:
@@ -111,7 +111,13 @@ class VectorMemoryStore:
             return
 
         self.id_list = list(self.items.keys())
-        vectors = [self.items[i].vector for i in self.id_list]
+        vectors = []
+        for i in self.id_list:
+            v = self.items[i].vector
+            if len(v) != TOTAL_DIM:
+                v = compute_query_vector(self.items[i].text)
+                self.items[i].vector = v
+            vectors.append(v)
         self.matrix = np.vstack(vectors).astype(np.float32)
 
     def insert(
@@ -212,6 +218,6 @@ class VectorMemoryStore:
         return {
             "total_items": len(self.items),
             "storage_path": self.storage_path,
-            "vector_dimension": VOCAB_DIM,
+            "vector_dimension": TOTAL_DIM,
             "domain_breakdown": domain_counts
         }
